@@ -11,7 +11,8 @@
   {% for task in tasks %}
     <li>
       <a href="{{ url_for('main.task_detail', task_id=task['id']) }}">
-        {{ task.title }}
+
+        {{ task['title'] }}
       </a>
     </li>
   {% endfor %}
