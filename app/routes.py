@@ -39,3 +39,24 @@ def edit_task(task_id):
         return redirect(url_for("main.task_detail", task_id=task_id))
 
     return render_template("edit_task.html", task=task)
+
+@main.route("/task/new", methods=["GET", "POST"])
+def new_task():
+    if request.method == "POST":
+        title = request.form["title"]
+        description = request.form["description"]
+
+        # create new ID (max id + 1)
+        new_id = max(t["id"] for t in tasks) + 1 if tasks else 1
+
+        new_task = {
+            "id": new_id,
+            "title": title,
+            "description": description,
+        }
+
+        tasks.append(new_task)
+
+        return redirect(url_for("main.index"))
+
+    return render_template("new_task.html")
