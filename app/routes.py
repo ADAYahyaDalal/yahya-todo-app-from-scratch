@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, request, redirect, url_for
 
 main = Blueprint('main', __name__)
 
@@ -28,3 +28,14 @@ def contact():
 def task_detail(task_id):
     task = next((t for t in tasks if t["id"] == task_id), None)
     return render_template("task_detail.html", task=task)
+
+@main.route("/task/<int:task_id>/edit", methods=["GET", "POST"])
+def edit_task(task_id):
+    task = next((t for t in tasks if t["id"] == task_id), None)
+
+    if request.method == "POST":
+        task["title"] = request.form["title"]
+        task["description"] = request.form["description"]
+        return redirect(url_for("main.task_detail", task_id=task_id))
+
+    return render_template("edit_task.html", task=task)
