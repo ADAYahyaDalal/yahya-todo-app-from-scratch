@@ -60,3 +60,10 @@ def new_task():
         return redirect(url_for("main.index"))
 
     return render_template("new_task.html")
+
+
+@main.route("/task/<int:task_id>/delete", methods=["POST"])
+def delete_task(task_id):
+    global tasks
+    tasks = [t for t in tasks if t["id"] != task_id]
+    return redirect(url_for("main.index"))
