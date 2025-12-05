@@ -4,4 +4,16 @@
 {% block content %}
 <h1>Welcome to the Home Page</h1>
 <p>This is the homepage of your Flask app.</p>
+
+<ul>
+  {% for task in tasks %}
+    <li>
+      <a href="{{ url_for('main.task_detail', task_id=task.id) }}">
+        {{ task.title }}
+      </a>
+    </li>
+  {% endfor %}
+</ul>
+
+
 {% endblock %}

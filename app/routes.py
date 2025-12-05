@@ -2,19 +2,29 @@ from flask import Blueprint, render_template
 
 main = Blueprint('main', __name__)
 
-@main.route('/')
-def index():
-    return render_template("index.html")
+# Dummy tasks list
+tasks = [
+    {"id": 1, "title": "Buy milk", "description": "Get fresh milk from Tesco"},
+    {"id": 2, "title": "Study Arabic", "description": "Revise vocabulary"},
+    {"id": 3, "title": "Complete Flask App", "description": "Finish the tutorial"},
+]
 
-@main.route('/about')
+@main.route("/")
+def index():
+    return render_template("index.html", tasks=tasks)
+
+
+@main.route("/about")
 def about():
     return render_template("about.html")
 
-@main.route('/contact')
+
+@main.route("/contact")
 def contact():
     return render_template("contact.html")
 
-@main.route('/tasks')
-def tasks():
-    return render_template("tasks.html")
 
+@main.route("/task/<int:task_id>")
+def task_detail(task_id):
+    task = next((t for t in tasks if t["id"] == task_id), None)
+    return render_template("task_detail.html", task=task)
