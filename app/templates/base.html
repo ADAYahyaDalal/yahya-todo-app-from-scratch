@@ -2,18 +2,20 @@
 <html>
 <head>
     <title>{% block title %}Yahya Todo App{% endblock %}</title>
-    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
 </head>
 <body>
 
     <h1>Yahya Todo App</h1>
 
     <nav>
-        <a href="/">Home</a> |
-        <a href="/about">About</a> |
-        <a href="/contact">Contact</a> |
-        <a href="/tasks">Tasks</a>
+    <a href="{{ url_for('main.index') }}">Home</a> |
+    <a href="{{ url_for('main.about') }}">About</a> |
+    <a href="{{ url_for('main.contact') }}">Contact</a> |
+    <a href="{{ url_for('main.tasks') }}">Tasks</a>
     </nav>
+
 
     <hr>
 

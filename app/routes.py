@@ -17,3 +17,4 @@ def contact():
 @main.route('/tasks')
 def tasks():
     return render_template("tasks.html")
+
