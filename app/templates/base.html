@@ -1,25 +1,25 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>{% block title %}Yahya Todo App{% endblock %}</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}My Flask App{% endblock %}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-
 </head>
 <body>
 
-    <h1>Yahya Todo App</h1>
-
+    <!-- Navigation -->
     <nav>
-    <a href="{{ url_for('main.index') }}">Home</a> |
-    <a href="{{ url_for('main.about') }}">About</a> |
-    <a href="{{ url_for('main.contact') }}">Contact</a> |
-    <a href="{{ url_for('main.tasks') }}">Tasks</a>
+        <a href="/">Home</a>
+        <a href="/about">About</a>
+        <a href="/contact">Contact</a>
     </nav>
 
-
-    <hr>
-
-    {% block content %}{% endblock %}
+    <!-- Page Content -->
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
 
 </body>
 </html>
