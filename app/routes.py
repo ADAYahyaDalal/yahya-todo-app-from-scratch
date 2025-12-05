@@ -1,4 +1,5 @@
 from flask import Blueprint, render_template, request, redirect, url_for
+from app.forms import LoginForm
 
 main = Blueprint('main', __name__)
 
@@ -67,3 +68,19 @@ def delete_task(task_id):
     global tasks
     tasks = [t for t in tasks if t["id"] != task_id]
     return redirect(url_for("main.index"))
+
+
+@main.route("/login", methods=["GET", "POST"])
+def login():
+    form = LoginForm()
+
+    if form.validate_on_submit():
+        # FOR NOW: print data (real authentication comes in later steps)
+        username = form.username.data
+        password = form.password.data
+        print("Login attempt:", username, password)
+
+        # Step 15 will handle actual login + flash messages
+        return redirect(url_for("main.index"))
+
+    return render_template("login.html", form=form)
